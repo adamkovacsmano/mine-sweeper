@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .squares {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        /* background-color: gray; */
+      }
+    </style>
+    <title>Mine Sweeper</title>
+  </head>
+  <body>
+    <main>
+      <div id="field"></div>
+    </main>
+  </body>
+  <script>
+    const createField = () => {
+      // let array = [];
+      for (let y = 0; y < 10; y++) {
+        for (let x = 0; x < 10; x++) {
+          createSquare(x * 10, y * 10);
+        }
+      }
+      // if(y)
+    };
+    const createSquare = (left, top) => {
+      let newSquare = document.createElement("gamefield");
+      newSquare.style.left = left + "px";
+      newSquare.style.top = top + "px";
+      newSquare.setAttribute("class", "squares");
+      document.getElementById("field").appendChild(newSquare);
+    };
+
+    createField();
+  </script>
+</html>
