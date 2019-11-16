@@ -1,45 +1,47 @@
-// console.log("hello");
+import Field from "./MineField.js";
 
-// let array = [1, 2, 3, 4];
+console.log("hello");
 
 let gameField = document.getElementById("field");
-gameField.innerHTML += "?";
 
-// let field = 0;
+const createField = (column, row, mine) => {
+  let tombike2 = new Array(column);
+  for (let i = 0; i < tombike2.length; i++) {
+    tombike2[i] = new Array(row);
+  }
 
-// for (let i = 0; i < array.length; i++) {
-//   for (let k = 0; k < array.length; k++) {
-//     array[i][k] = field++;
-//     console.log(field);
-//   }
-// }
+  let bombCounter = mine;
 
-// const createSquare = () => {
-//   let newSquare = document.createElement("field");
-//   newSquare.style.left = left + "px";
-//   newSquare.style.top = top + "px";
-//   newSquare.setAttribute("class", "squares");
-//   document.getElementsByTagName("body")[0].appendChild(newSquare);
-// };
-
-// const createField = () => {
-//   for (let y = 0; y < 15; y++) {
-//     for (let x = 0; x < 15; x++) {
-//       createSquare(x * 15, y * 15);
-//     }
-//   }
-// };
-
-// createSquare();
-
-const createSquare = () => {
-  let square = document.getElementById("");
-};
-
-const createField = () => {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = 0; j < array.length; j++) {
-      createSquare();
+  for (let i = 0; i < column; i++) {
+    for (let k = 0; k < row; k++) {
+      tombike2[i][k] = new Field();
     }
   }
+
+  for (let i = 0; i < column; i++) {
+    for (let k = 0; k < row; k++) {
+      if (tombike2[i][k].isLocked === false && bombCounter > 0) {
+        if (Math.random() < 0.1) {
+          tombike2[i][k].state = "x";
+          tombike2[i][k].isLocked = true;
+          bombCounter--;
+        }
+      }
+    }
+  }
+
+  // for (let i = 0; i < 4; i++) {
+  //   for (let k = 0; k < 4; k++) {
+
+  //   }
+  // }
+
+  for (let i = 0; i < column; i++) {
+    for (let k = 0; k < row; k++) {
+      gameField.innerHTML += ` ${tombike2[i][k].state} `;
+    }
+    gameField.innerHTML += `<br>`;
+  }
 };
+
+createField(25, 25, 80);
